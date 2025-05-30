@@ -13,19 +13,20 @@ public class Work {
     private Long work_id;
     private String title;
     @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "work_author",
-            joinColumns = @JoinColumn(name = "work_id"),
-            inverseJoinColumns = @JoinColumn(name = "person_id"))
+    @JoinTable(name = "work_author", joinColumns = @JoinColumn(name = "work_id"), inverseJoinColumns = @JoinColumn(name = "person_id"))
     private Set<Person> authors;
+    @ElementCollection
+    private Set<String> languages;
     private Long download_count;
 
-    public Work() {}
+    public Work() {
+    }
 
-    public Work(Long work_id, String title, Set<Person> authors, Long download_count) {
+    public Work(Long work_id, String title, Set<Person> authors, Set<String> languages, Long download_count) {
         this.work_id = work_id;
         this.title = title;
         this.authors = authors;
+        this.languages = languages;
         this.download_count = download_count;
     }
 
@@ -67,5 +68,24 @@ public class Work {
 
     public void setAuthors(Set<Person> authors) {
         this.authors = authors;
+    }
+
+    public Set<String> getLanguages() {
+        return languages;
+    }
+
+    public void setLanguages(Set<String> languages) {
+        this.languages = languages;
+    }
+
+    @Override
+    public String toString() {
+        return """
+                title: %s
+                authors: %s
+                languages: %s
+                download_count: %d
+                
+                """.formatted(title, authors, languages, download_count);
     }
 }

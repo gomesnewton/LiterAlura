@@ -20,8 +20,9 @@ public class GutenDexApi {
     }
 
     public String search(String search) {
+        String sch = search.replace(" ", "%20");
         try {
-            return getResponse(URI.create("http://gutendex.com/books?search=" + search)).body();
+            return getResponse(URI.create("http://gutendex.com/books/?search=" + sch)).body();
         } catch (IOException | InterruptedException e) {
             throw new RuntimeException(e);
         }

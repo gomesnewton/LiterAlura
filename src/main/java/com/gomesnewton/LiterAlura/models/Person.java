@@ -76,4 +76,9 @@ public class Person {
     public void setWorks(Set<Work> works) {
         this.works = works;
     }
+
+    @Override
+    public String toString() {
+        return "%s, %d - %d".formatted(name, birth_year, death_year);
+    }
 }
