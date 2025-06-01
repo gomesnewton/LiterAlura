@@ -1,36 +1,32 @@
-package com.gomesnewton.LiterAlura.services;
+package com.gomesnewton.LiterAlura.resources;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.gomesnewton.LiterAlura.models.Work;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.net.URI;
+import java.net.URL;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
+@Component
 public class GutenDexApi {
 
-    private static GutenDexApi instance;
-
-    private GutenDexApi() {}
-
-    public static GutenDexApi getInstance() {
-        if (instance == null) {
-            instance = new GutenDexApi();
-        }
-        return instance;
-    }
-
     public String search(String search) {
-        String sch = search.replace(" ", "%20");
         try {
-            return getResponse(URI.create("http://gutendex.com/books/?search=" + sch)).body();
+            return getResponse(URI.create("http://gutendex.com/books/?search=" + search.replace(" ", "%20"))).body();
         } catch (IOException | InterruptedException e) {
             throw new RuntimeException(e);
         }
     }
 
-    public String getBook() {
+    public Work getBookById(String id) {
+        String workJson;
         try {
-            return getResponse(URI.create("http://gutendex.com/books/2610/")).body();
+            workJson = getResponse(URI.create("http://gutendex.com/books/" + id + "/")).body();
+            return new ObjectMapper().readValue(workJson, Work.class);
         } catch (IOException | InterruptedException e) {
             throw new RuntimeException(e);
         }

@@ -81,11 +81,12 @@ public class Work {
     @Override
     public String toString() {
         return """
+                id: %d
                 title: %s
                 authors: %s
                 languages: %s
                 download_count: %d
                 
-                """.formatted(title, authors, languages, download_count);
+                """.formatted(work_id, title, authors, languages, download_count);
     }
 }

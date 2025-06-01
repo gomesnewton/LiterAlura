@@ -7,14 +7,14 @@ import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class SearchWorks {
-    private long count;
-    private boolean next;
-    private boolean previous;
+    private Long count;
+    private String next;
+    private String previous;
     private List<Work> results;
 
     public SearchWorks() {}
 
-    public SearchWorks(long count, boolean next, boolean previous, List<Work> results) {
+    public SearchWorks(Long count, String next, String previous, List<Work> results) {
         this.count = count;
         this.next = next;
         this.previous = previous;
@@ -29,19 +29,19 @@ public class SearchWorks {
         this.count = count;
     }
 
-    public boolean isNext() {
+    public String getNext() {
         return next;
     }
 
-    public void setNext(boolean next) {
+    public void setNext(String next) {
         this.next = next;
     }
 
-    public boolean isPrevious() {
+    public String getPrevious() {
         return previous;
     }
 
-    public void setPrevious(boolean previous) {
+    public void setPrevious(String previous) {
         this.previous = previous;
     }
 
@@ -51,5 +51,9 @@ public class SearchWorks {
 
     public void setResults(List<Work> results) {
         this.results = results;
+    }
+
+    public void displayResults() {
+        results.forEach(System.out::println);
     }
 }
