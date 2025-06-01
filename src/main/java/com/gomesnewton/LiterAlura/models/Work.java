@@ -80,13 +80,13 @@ public class Work {
 
     @Override
     public String toString() {
-        return """
-                id: %d
-                title: %s
-                authors: %s
-                languages: %s
-                download_count: %d
-                
-                """.formatted(work_id, title, authors, languages, download_count);
+        StringBuilder sb = new StringBuilder("Book { ");
+        sb.append("id: ").append(work_id);
+        sb.append(", title: ").append(title);
+        sb.append(", author: ").append(authors);
+        sb.append(", languages: ").append(languages);
+        sb.append(", download_count: ").append(download_count);
+        sb.append(" }");
+        return sb.toString();
     }
 }

@@ -79,6 +79,11 @@ public class Person {
 
     @Override
     public String toString() {
-        return "%s, %d - %d".formatted(name, birth_year, death_year);
+        StringBuilder sb = new StringBuilder("Author { ");
+        sb.append(" name: ").append(name);
+        sb.append(", birth_year: ").append(birth_year);
+        sb.append(", death_year: ").append(death_year);
+        sb.append(" }");
+        return sb.toString();
     }
 }
