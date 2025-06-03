@@ -33,6 +33,6 @@ public class PersonServiceImpl implements PersonService{
     }
 
     public List<Person> findByBirthYearAndDeathYear(Integer year) {
-        return personRepository.findByBirthYearLessThanAndDeathYearGreaterThan(year, year);
+        return personRepository.findByBirthAndDeathYear(year);
     }
 }
