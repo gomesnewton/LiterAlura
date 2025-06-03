@@ -2,6 +2,7 @@ package com.gomesnewton.LiterAlura.services;
 
 import java.util.List;
 
+import com.gomesnewton.LiterAlura.models.Person;
 import com.gomesnewton.LiterAlura.models.Work;
 
 public interface WorkService {
@@ -12,7 +13,7 @@ public interface WorkService {
     List<Work> fetchWorkList();
 
     // Update operation
-    Work updateWork(Work department, Long workId);
+    Work updateWork(Work work, Long workId);
 
     // Delete operation
     void deleteWorkById(Long workId);

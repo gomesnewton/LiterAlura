@@ -1,5 +1,6 @@
 package com.gomesnewton.LiterAlura.models;
 
+import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
@@ -9,22 +10,26 @@ import java.util.Set;
 @Table(name="persons")
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Person {
-    @Id
-    @GeneratedValue
-    private Long person_id;
+    @Id @GeneratedValue private Long person_id;
+
     private String name;
-    private Integer birth_year;
-    private Integer death_year;
-    @ManyToMany(mappedBy = "authors", cascade = CascadeType.ALL)
+
+    @JsonAlias("birth_year")
+    private Integer birthYear;
+
+    @JsonAlias("death_year")
+    private Integer deathYear;
+
+    @ManyToMany(mappedBy = "authors", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Work> works;
 
     public Person() {}
 
-    public Person(Long personid, String name, Integer birth_year, Integer death_year, Set<Work> works) {
+    public Person(Long personid, String name, Integer birthYear, Integer deathYear, Set<Work> works) {
         this.person_id = personid;
         this.name = name;
-        this.birth_year = birth_year;
-        this.death_year = death_year;
+        this.birthYear = birthYear;
+        this.deathYear = deathYear;
         this.works = works;
     }
 
@@ -45,20 +50,20 @@ public class Person {
         this.name = name;
     }
 
-    public Integer getBirth_year() {
-        return birth_year;
+    public Integer getBirthYear() {
+        return birthYear;
     }
 
-    public void setBirth_year(Integer birth_year) {
-        this.birth_year = birth_year;
+    public void setBirthYear(Integer birthYear) {
+        this.birthYear = birthYear;
     }
 
-    public Integer getDeath_year() {
-        return death_year;
+    public Integer getDeathYear() {
+        return deathYear;
     }
 
-    public void setDeath_year(Integer death_year) {
-        this.death_year = death_year;
+    public void setDeathYear(Integer deathYear) {
+        this.deathYear = deathYear;
     }
 
     public Long getPerson_id() {
@@ -81,8 +86,8 @@ public class Person {
     public String toString() {
         StringBuilder sb = new StringBuilder("Author { ");
         sb.append(" name: ").append(name);
-        sb.append(", birth_year: ").append(birth_year);
-        sb.append(", death_year: ").append(death_year);
+        sb.append(", birth_year: ").append(birthYear);
+        sb.append(", death_year: ").append(deathYear);
         sb.append(" }");
         return sb.toString();
     }

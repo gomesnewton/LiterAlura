@@ -1,5 +1,6 @@
 package com.gomesnewton.LiterAlura.services;
 
+import com.gomesnewton.LiterAlura.models.Person;
 import com.gomesnewton.LiterAlura.models.Work;
 import com.gomesnewton.LiterAlura.repositories.WorkRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,4 +40,5 @@ public class WorkServiceImp implements WorkService {
     public void deleteWorkById(Long workId) {
         workRepository.deleteById(workId);
     }
+
 }

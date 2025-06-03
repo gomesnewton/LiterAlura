@@ -12,10 +12,15 @@ public class Work {
     @Id
     private Long work_id;
     private String title;
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "work_author", joinColumns = @JoinColumn(name = "work_id"), inverseJoinColumns = @JoinColumn(name = "person_id"))
+
+    @ManyToMany(cascade = CascadeType.ALL,
+                fetch = FetchType.EAGER)
+    @JoinTable(name = "work_author",
+                joinColumns = @JoinColumn(name = "work_id"),
+                inverseJoinColumns = @JoinColumn(name = "person_id"))
     private Set<Person> authors;
-    @ElementCollection
+
+    @ElementCollection(fetch = FetchType.EAGER)
     private Set<String> languages;
     private Long download_count;
 
