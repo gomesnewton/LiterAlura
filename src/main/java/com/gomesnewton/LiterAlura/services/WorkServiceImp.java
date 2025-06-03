@@ -41,4 +41,8 @@ public class WorkServiceImp implements WorkService {
         workRepository.deleteById(workId);
     }
 
+    @Override
+    public List<Work> findByLanguages(String language) {
+        return workRepository.findByLanguagesContaining(language);
+    }
 }

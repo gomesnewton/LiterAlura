@@ -53,7 +53,13 @@ public class SearchWorks {
         this.results = results;
     }
 
+    public Work getWork(int index) {
+        return results.get(index);
+    }
+
     public void displayResults() {
-        results.forEach(System.out::println);
+        for(int i = 0; i < results.size(); i++) {
+            System.out.printf("%d. %s%n", i, results.get(i));
+        }
     }
 }

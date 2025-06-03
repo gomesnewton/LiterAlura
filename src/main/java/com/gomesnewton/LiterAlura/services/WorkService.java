@@ -17,4 +17,6 @@ public interface WorkService {
 
     // Delete operation
     void deleteWorkById(Long workId);
+
+    List<Work> findByLanguages(String language);
 }
